@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schemalist gettext-domain="shortcutmaker">
+	<schema id="io.github.pj_oscheh.shortcutmaker" path="/io/github/pj_oscheh/shortcutmaker/">
+	</schema>
+</schemalist>

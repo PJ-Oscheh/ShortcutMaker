@@ -1,0 +1,6 @@
+data/io.github.pj_oscheh.shortcutmaker.desktop.in
+data/io.github.pj_oscheh.shortcutmaker.appdata.xml.in
+data/io.github.pj_oscheh.shortcutmaker.gschema.xml
+src/main.py
+src/window.py
+src/window.ui

@@ -1,0 +1,409 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<interface>
+  <requires lib="gtk" version="4.0"/>
+  <requires lib="Adw" version="1.0"/>
+  <template class="ShortcutmakerWindow" parent="AdwApplicationWindow">
+    <property name="default-width">0</property>
+    <property name="default-height">0</property>
+    <child>
+      <object class="GtkBox">
+        <property name="orientation">horizontal</property>
+        <property name="hexpand">true</property>
+
+        <!-- New Code -->
+            <child>
+              <object class="AdwToastOverlay" id="toast_overlay">
+        <child>
+          <object class="AdwLeaflet" id="leaflet">
+          <property name="can-navigate-back">true</property>
+          <property name="fold-threshold-policy">ADW_FOLD_THRESHOLD_POLICY_NATURAL</property>
+          <property name="can-unfold">false</property>
+
+
+
+
+          <child>
+            <object class="GtkBox" id="mainBox">
+              <property name="orientation">vertical</property>
+              <!-- Header Bar Stuff -->
+                <child>
+                  <object class="AdwHeaderBar" id="header_bar">
+                    <property name="title-widget">
+                      <object class="AdwWindowTitle" id="hbTitle">
+                          <property name="title">Create Shortcut</property>
+                    </object>
+                    </property>
+                    <child type="start">
+                      <object class="GtkButton" id="btnCreate">
+                        <property name="label" translatable="yes">_Create</property>
+                        <property name="sensitive">false</property>
+                        <property name="use_underline">true</property>
+                        <signal name="clicked" handler="do_create" />
+                        <style>
+                          <class name="suggested-action" />
+                        </style>
+                      </object>
+                    </child>
+                    <child type="end">
+                      <object class="GtkButton" id="btnCancel">
+                        <property name="label" translatable="yes">Ca_ncel</property>
+                        <property name="use_underline">true</property>
+                        <property name="visible">false</property>
+                        <signal name="clicked" handler="do_cancel" />
+                      </object>
+                    </child>
+
+
+                    <child type="end">
+                      <object class="GtkMenuButton">
+                        <property name="icon-name">open-menu-symbolic</property>
+                        <property name="menu-model">primary_menu</property>
+                      </object>
+                    </child>
+                  </object>
+                </child>
+
+
+                <!-- Window Content -->
+                <child>
+                  <object class="AdwClamp">
+                    <property name="maximum-size">600</property>
+                    <property name="tightening-threshold">600</property>
+                    <property name="child">
+                      <object class="GtkLabel">
+                        <property name="hexpand">true</property>
+                        <property name="halign">GTK_ALIGN_START</property>
+                        <property name="valign">GTK_ALIGN_START</property>
+                        <property name="margin-start">12</property>
+                        <property name="margin-top">24</property>
+                        <property name="margin-bottom">24</property>
+                        <property name="margin-end">96</property>
+                        <property name="label" translatable="yes">Create a shortcut to easily access it from the Activities Overview</property>
+                        <style>
+                          <class name="dim-label" />
+                        </style>
+
+                      </object>
+                    </property>
+                  </object>
+                </child>
+                <child>
+                  <object class="AdwClamp">
+                    <property name="maximum-size">600</property>
+                    <property name="tightening-threshold">600</property>
+                    <property name="child">
+                      <object class="GtkListBox">
+                        <property name="margin-start">12</property>
+                        <property name="margin-end">12</property>
+                        <property name="margin-top">12</property>
+                        <property name="margin-bottom">12</property>
+                        <property name="hexpand">true</property>
+                        <property name="selection-mode">none</property>
+                        <style>
+                          <class name="boxed-list" />
+                        </style>
+                        <child>
+                          <object class="AdwEntryRow" id="arName">
+                            <property name="title">Name (Required)</property>
+                            <signal name="changed" handler="name_exec_text_changed" />
+                          </object>
+                        </child>
+                        <child>
+                          <object class="AdwEntryRow" id="arExecPath">
+                            <property name="title">Execution Path (Required)</property>
+                            <signal name="changed" handler="name_exec_text_changed" />
+                            <child type="suffix">
+                              <object class="GtkButton">
+                                <property name="icon_name">document-open-symbolic</property>
+                                <property name="valign">center</property>
+                                <signal name="clicked" handler="open_exec" />
+                              </object>
+                            </child>
+                          </object>
+                        </child>
+                        <child>
+                          <object class="AdwActionRow" id="arIcon">
+                            <property name="title">Icon</property>
+                            <property name="subtitle">No icon set</property>
+                            <property name="activatable">true</property>
+                            <signal name="activated" handler="open_set_icon" />
+                            <child type="suffix">
+                              <object class="GtkImage">
+                                <property name="icon_name">go-next-symbolic</property>
+                                <property name="halign">end</property>
+                                <property name="valign">center</property>
+                              </object>
+                            </child>
+                          </object>
+                        </child>
+                      <child>
+                        <object class="AdwExpanderRow" id="arMore">
+                          <property name="title">More Options</property>
+                          <child>
+                            <object class="AdwActionRow">
+                              <property name="title">Use Terminal</property>
+                              <property name="activatable">true</property>
+                              <property name="activatable-widget">cbUseTerminal</property>
+                              <child type="suffix">
+                                <object class="GtkCheckButton" id="cbUseTerminal">
+                                </object>
+                              </child>
+                            </object>
+                          </child>
+                          <child>
+                            <object class="AdwEntryRow" id="arComment">
+                              <property name="title">Comment</property>
+                            </object>
+                          </child>
+                          <child>
+                            <object class="AdwEntryRow" id="arCategories">
+                              <property name="title">Categories (Separated and ended with semicolon)</property>
+                            </object>
+                          </child>
+                        </object>
+                      </child>
+
+
+                      </object>
+                    </property>
+                    </object>
+                </child>
+                </object>
+              </child>
+
+
+
+
+            <child>
+              <object class="AdwLeafletPage">
+                <property name="navigatable">false</property>
+                <property name="child">
+                  <object class="GtkSeparator"></object>
+                </property>
+              </object>
+            </child>
+
+            <child>
+              <object class="GtkBox" id="iconBox">
+                <property name="orientation">vertical</property>
+                <property name="hexpand">true</property>
+            <child>
+              <object class="AdwHeaderBar">
+                <property name="title-widget">
+                  <object class="AdwWindowTitle">
+                    <property name="title">Icon</property>
+                  </object>
+                </property>
+                <child type="start">
+                  <object class="GtkButton" id="btnBack">
+                    <property name="icon_name">go-previous-symbolic</property>
+                    <signal name="clicked" handler="go_back" />
+                  </object>
+                </child>
+              </object>
+            </child>
+            <child>
+              <object class="GtkListBox">
+                <property name="selection-mode">none</property>
+                <property name="margin-start">12</property>
+                <property name="margin-end">12</property>
+                <property name="margin-top">12</property>
+                <property name="margin-bottom">12</property>
+                <style>
+                  <class name="boxed-list" />
+                </style>
+                <child>
+                  <object class="AdwEntryRow" id ="arIconPath">
+                    <property name="title">Icon Path</property>
+                    <property name="activatable">true</property>
+                    <signal name="changed" handler="use_icon_text_changed" />
+                    <child type="prefix">
+                      <object class="GtkCheckButton" id="rbUseIcon">
+                        <signal name="toggled" handler="rbIconsToggled" />
+                      </object>
+                    </child>
+                    <child type="suffix">
+                      <object class="GtkButton">
+                        <property name="icon_name">document-open-symbolic</property>
+                        <property name="valign">center</property>
+                        <signal name="clicked" handler="open_icon" />
+                      </object>
+                    </child>
+                  </object>
+                </child>
+                <child>
+                  <object class="AdwActionRow">
+                    <property name="title">No Icon</property>
+                    <property name="activatable">true</property>
+                    <property name="activatable-widget">rbNoIcon</property>
+                    <child type="prefix">
+                      <object class="GtkCheckButton" id="rbNoIcon">
+                        <property name="group">rbUseIcon</property>
+                        <property name="active">true</property>
+                        <signal name="toggled" handler="rbIconsToggled" />
+                      </object>
+                    </child>
+                  </object>
+                </child>
+            </object>
+          </child>
+          <child>
+            <object class="GtkLabel" id="lblIconPrev">
+              <property name="label" translatable="yes">Icon Preview:</property>
+              <property name="halign">GTK_ALIGN_START</property>
+              <property name="margin-start">12</property>
+              <property name="visible">false</property>
+              <style>
+                <class name="heading" />
+              </style>
+            </object>
+          </child>
+          <child>
+            <object class="GtkImage" id="imgIconPrev">
+              <property name="file"></property>
+              <property name="visible">false</property>
+              <property name="pixel-size">128</property>
+              <property name="halign">GTK_ALIGN_START</property>
+              <property name="margin-start">12</property>
+              <property name="margin-top">12</property>
+              <property name="margin-bottom">12</property>
+              <property name="margin-end">12</property>
+            </object>
+          </child>
+         </object>
+        </child>
+
+        <child>
+              <object class="AdwLeafletPage">
+                <property name="navigatable">false</property>
+                <property name="child">
+                  <object class="GtkSeparator"></object>
+                </property>
+              </object>
+        </child>
+
+        <child>
+          <object class="GtkBox" id="doneBox">
+            <property name="orientation">vertical</property>
+            <property name="hexpand">true</property>
+            <child>
+              <object class="AdwHeaderBar">
+                <property name="title-widget">
+                  <object class="AdwWindowTitle">
+                    <property name="title" translatable="yes">Shortcut Created!</property>
+                  </object>
+                </property>
+              </object>
+            </child>
+            <child>
+              <object class="GtkLabel">
+                <property name="label" translatable="yes">Shortcut Created!</property>
+                <property name="margin-top">24</property>
+                <property name="margin-bottom">24</property>
+                <style>
+                  <class name="title-1" />
+                </style>
+              </object>
+            </child>
+            <child>
+              <object class="GtkLabel">
+                <property name="label" translatable="yes">Launch it from the Activities Overview</property>
+              </object>
+            </child>
+            <child>
+              <object class="GtkImage" id="imgDone">
+                <property name="pixel-size">128</property>
+                <property name="margin-bottom">12</property>
+              </object>
+            </child>
+            <child>
+              <object class="GtkLabel" id="lblDone">
+                <property name="margin-bottom">36</property>
+                <style>
+                  <class name="title-2" />
+                </style>
+              </object>
+            </child>
+            <child>
+              <object class="GtkBox">
+                <property name="orientation">horizontal</property>
+                <property name="halign">center</property>
+                <property name="hexpand">true</property>
+                <child>
+                  <object class="GtkButton">
+                    <property name="label" translatable="yes">_Create Another</property>
+                    <property name="use_underline">true</property>
+                    <property name="hexpand">true</property>
+                    <property name="vexpand">false</property>
+                    <property name="valign">GTK_ALIGN_CENTER</property>
+                    <property name="width-request">200</property>
+                    <property name="margin-end">48</property>
+                    <property name="margin-bottom">24</property>
+                    <signal name="clicked" handler="do_create_another" />
+                    <style>
+                      <class name="pill" />
+                    </style>
+                  </object>
+                </child>
+                <child>
+                  <object class="GtkButton">
+                    <property name="label" translatable="yes">Close and _Finish</property>
+                    <property name="use_underline">true</property>
+                    <property name="hexpand">true</property>
+                    <property name="vexpand">false</property>
+                    <property name="valign">GTK_ALIGN_CENTER</property>
+                    <property name="width-request">200</property>
+                    <property name="margin-bottom">24</property>
+                    <signal name="clicked" handler="do_close" />
+                    <style>
+                      <class name="pill" />
+                      <class name="suggested-action" />
+                    </style>
+                  </object>
+                </child>
+              </object>
+            </child>
+          </object>
+        </child>
+
+
+
+          <!-- End tag for leaflet -->
+          </object>
+        </child>
+
+          </object>
+      </child>
+          <!-- End toast overlay -->
+
+      <!-- End tag for main hbox -->
+      </object>
+    </child>
+  </template>
+  <menu id="primary_menu">
+    <section>
+      <item>
+        <attribute name="label" translatable="yes">_Open Shortcut</attribute>
+        <attribute name="action">app.open_shortcut</attribute>
+      </item>
+      <item>
+        <attribute name="label" translatable="yes">_Delete Shortcut</attribute>
+        <attribute name="action">app.delete_shortcut</attribute>
+      </item>
+    </section>
+    <section>
+      <item>
+        <attribute name="label" translatable="yes">_Keyboard Shortcuts</attribute>
+        <attribute name="action">win.show-help-overlay</attribute>
+      </item>
+      <item>
+        <attribute name="label" translatable="yes">_About Shortcut Maker</attribute>
+        <attribute name="action">app.about</attribute>
+      </item>
+    </section>
+  </menu>
+
+
+</interface>
+
+
