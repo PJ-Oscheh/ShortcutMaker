@@ -38,6 +38,12 @@
             ]
         }
     ],
+    "file": [
+    {
+    	"src":"data/icons/hicolor/",
+    	"dest":"/share/icons/hicolor/"
+    }
+    ],
     "build-options" : {
         "env" : {        }
     }
