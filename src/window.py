@@ -29,6 +29,7 @@ import os
 
 @Gtk.Template(resource_path='/io/github/pj_oscheh/shortcutmaker/window.ui')
 class ShortcutmakerWindow(Adw.ApplicationWindow):
+
     __gtype_name__ = 'ShortcutmakerWindow'
 
     #Header Bar:
@@ -91,12 +92,6 @@ class ShortcutmakerWindow(Adw.ApplicationWindow):
     delete_file = None
 
     #Enum Vars
-    #NOTE: Unsure how to use ADW enums! I'd like to fix this!'
-    ADW_NAVIGATION_DIRECTION_BACK = 0;
-    ADW_NAVIGATION_DIRECTION_FORWARD = 1;
-    ADW_RESPONSE_DEFAULT = 0
-    ADW_RESPONSE_SUGGESTED = 1
-    ADW_RESPONSE_DESTRUCTIVE = 2
 
 
 
@@ -157,7 +152,7 @@ class ShortcutmakerWindow(Adw.ApplicationWindow):
                 actionRow: Action Row clicked
             """
         self.leaflet.reorder_child_after(self.iconBox, self.mainBox)
-        self.leaflet.navigate(self.ADW_NAVIGATION_DIRECTION_FORWARD)
+        self.leaflet.navigate(Adw.NavigationDirection.FORWARD)
 
 
     @Gtk.Template.Callback()
@@ -167,7 +162,7 @@ class ShortcutmakerWindow(Adw.ApplicationWindow):
             Args:
                 button: Button clicked
             """
-        self.leaflet.navigate(self.ADW_NAVIGATION_DIRECTION_BACK)
+        self.leaflet.navigate(Adw.NavigationDirection.BACK)
 
     @Gtk.Template.Callback()
     def open_icon(self, button):
@@ -374,7 +369,7 @@ class ShortcutmakerWindow(Adw.ApplicationWindow):
                 dlgUnsuppProps.set_transient_for(self)
                 dlgUnsuppProps.add_response("cancel","_Cancel")
                 dlgUnsuppProps.add_response("proceed","_Proceed")
-                dlgUnsuppProps.set_response_appearance("proceed",self.ADW_RESPONSE_DESTRUCTIVE)
+                dlgUnsuppProps.set_response_appearance("proceed",Adw.ResponseAppearance.DESTRUCTIVE)
                 dlgUnsuppProps.set_default_response("cancel")
                 dlgUnsuppProps.connect('response',self.unsupp_dlg_response_cb)
                 Gtk.Window.present(dlgUnsuppProps)
@@ -409,7 +404,7 @@ class ShortcutmakerWindow(Adw.ApplicationWindow):
             dlgDelete.set_transient_for(self)
             dlgDelete.add_response("cancel","_Cancel")
             dlgDelete.add_response("delete","_Delete")
-            dlgDelete.set_response_appearance("delete",self.ADW_RESPONSE_DESTRUCTIVE)
+            dlgDelete.set_response_appearance("delete", Adw.ResponseAppearance.DESTRUCTIVE)
             dlgDelete.set_default_response("cancel")
             dlgDelete.connect('response',self.delete_dlg_response_cb)
             Gtk.Window.present(dlgDelete)
