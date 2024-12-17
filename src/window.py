@@ -53,10 +53,10 @@ class ShortcutmakerWindow(Adw.ApplicationWindow):
     #Check Button for terminal usage
     cbUseTerminal = Gtk.Template.Child()
 
-    #Leaflet
-    leaflet = Gtk.Template.Child()
+    #Navigation View
+    navigation_view = Gtk.Template.Child()
 
-    #Boxes (represent leaflet pages)
+    #Boxes (represent nav view pages)
     mainBox = Gtk.Template.Child()
     iconBox = Gtk.Template.Child()
     doneBox = Gtk.Template.Child()
@@ -91,11 +91,6 @@ class ShortcutmakerWindow(Adw.ApplicationWindow):
     #Temporarily store file to delete between logic and callback
     delete_file = None
 
-    #Enum Vars
-
-
-
-
     #Callbacks
     @Gtk.Template.Callback()
     def do_cancel(self, button):
@@ -114,7 +109,6 @@ class ShortcutmakerWindow(Adw.ApplicationWindow):
                 button: Button clicked
             """
         self.destroy()
-
 
     @Gtk.Template.Callback()
     def do_create(self, button):
@@ -138,8 +132,8 @@ class ShortcutmakerWindow(Adw.ApplicationWindow):
             self.imgDone.set_from_file(summary[2][6:])
         else:
             self.imgDone.set_visible(False)
-        self.leaflet.set_visible_child(self.doneBox)
-        self.leaflet.set_can_navigate_back(False)
+        self.navigation_view.set_visible_child(self.doneBox)
+        self.navigation_view.set_can_navigate_back(False)
 
 
 
@@ -151,8 +145,7 @@ class ShortcutmakerWindow(Adw.ApplicationWindow):
             Args:
                 actionRow: Action Row clicked
             """
-        self.leaflet.reorder_child_after(self.iconBox, self.mainBox)
-        self.leaflet.navigate(Adw.NavigationDirection.FORWARD)
+        self.navigation_view.push_by_tag("icon_page")
 
 
     @Gtk.Template.Callback()
@@ -162,7 +155,7 @@ class ShortcutmakerWindow(Adw.ApplicationWindow):
             Args:
                 button: Button clicked
             """
-        self.leaflet.navigate(Adw.NavigationDirection.BACK)
+        self.navigation_view.navigate(Adw.NavigationDirection.BACK)
 
     @Gtk.Template.Callback()
     def open_icon(self, button):
@@ -265,8 +258,8 @@ class ShortcutmakerWindow(Adw.ApplicationWindow):
         self.imgIconPrev.set_from_file("")
 
 
-        self.leaflet.set_visible_child(self.mainBox)
-        self.leaflet.set_can_navigate_back(True)
+        self.navigation_view.set_visible_child(self.mainBox)
+        self.navigation_view.set_can_navigate_back(True)
 
     def closeEditShortcut(self):
         """Return app to default conditions and indicate in UI that the app
