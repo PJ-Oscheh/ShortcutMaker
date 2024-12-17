@@ -132,8 +132,7 @@ class ShortcutmakerWindow(Adw.ApplicationWindow):
             self.imgDone.set_from_file(summary[2][6:])
         else:
             self.imgDone.set_visible(False)
-        self.navigation_view.set_visible_child(self.doneBox)
-        self.navigation_view.set_can_navigate_back(False)
+        self.navigation_view.push_by_tag("created_page")
 
 
 
@@ -257,9 +256,7 @@ class ShortcutmakerWindow(Adw.ApplicationWindow):
         self.arMore.set_expanded(False)
         self.imgIconPrev.set_from_file("")
 
-
-        self.navigation_view.set_visible_child(self.mainBox)
-        self.navigation_view.set_can_navigate_back(True)
+        self.navigation_view.pop_to_tag("main_page")
 
     def closeEditShortcut(self):
         """Return app to default conditions and indicate in UI that the app
