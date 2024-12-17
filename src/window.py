@@ -146,16 +146,6 @@ class ShortcutmakerWindow(Adw.ApplicationWindow):
             """
         self.navigation_view.push_by_tag("icon_page")
 
-
-    @Gtk.Template.Callback()
-    def go_back(self, button):
-        """Callback for back button
-
-            Args:
-                button: Button clicked
-            """
-        self.navigation_view.navigate(Adw.NavigationDirection.BACK)
-
     @Gtk.Template.Callback()
     def open_icon(self, button):
         """Callback for Open Icon button

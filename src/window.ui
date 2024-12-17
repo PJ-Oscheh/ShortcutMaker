@@ -183,12 +183,6 @@
                     <property name="title">Icon</property>
                   </object>
                 </property>
-                <child type="start">
-                  <object class="GtkButton" id="btnBack">
-                    <property name="icon_name">go-previous-symbolic</property>
-                    <signal name="clicked" handler="go_back" />
-                  </object>
-                </child>
               </object>
             </child>
             <child>
@@ -267,6 +261,7 @@
         <child>
           <object class="AdwNavigationPage">
             <property name="tag">created_page</property>
+            <property name="can_pop">false</property>
             <property name="child">
               <object class="GtkBox" id="doneBox">
             <property name="orientation">vertical</property>
