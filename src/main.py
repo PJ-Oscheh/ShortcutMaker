@@ -52,14 +52,14 @@ class ShortcutmakerApplication(Adw.Application):
 
     def on_about_action(self, widget, _):
         """Callback for the app.about action."""
-        about = Adw.AboutWindow(transient_for=self.props.active_window,
-                                application_name='Shortcut Maker',
+        about = Adw.AboutDialog(application_name='Shortcut Maker',
                                 application_icon='io.github.pj_oscheh.shortcutmaker',
                                 developer_name='PJ Oschmann',
                                 version='0.1.0',
                                 developers=['PJ Oschmann'],
-                                copyright='© 2023 PJ Oschmann')
-        about.present()
+                                copyright='© 2023 PJ Oschmann',
+                                comments='Easily create shortcuts on the GNOME desktop')
+        about.present(self.props.active_window)
 
     def on_preferences_action(self, widget, _):
         """Callback for the app.preferences action."""
