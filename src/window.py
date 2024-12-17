@@ -34,8 +34,12 @@ class ShortcutmakerWindow(Adw.ApplicationWindow):
 
     #Header Bar:
     header_bar = Gtk.Template.Child()
-    hbTitle = Gtk.Template.Child()
 
+    # Main nav page:
+    nav_page_main = Gtk.Template.Child()
+
+    # Title widget of main nav page headerbar:
+    hbTitle = Gtk.Template.Child()
 
     #Header buttons:
     btnCancel = Gtk.Template.Child()
@@ -253,6 +257,7 @@ class ShortcutmakerWindow(Adw.ApplicationWindow):
         will create a new shortcut rather than edit one.
         """
         self.resetAllFields()
+        self.nav_page_main.set_title("Create Shortcut")
         self.hbTitle.set_title("Create Shortcut")
         self.hbTitle.set_subtitle("")
         self.btnCancel.set_visible(False)
@@ -294,9 +299,11 @@ class ShortcutmakerWindow(Adw.ApplicationWindow):
             #Keep track of open file
             self.current_file = path
 
-            #Set window subtitle
+            #Set window title
+            self.nav_page_main.set_title("Edit Shortcut")
             self.hbTitle.set_title("Edit Shortcut")
             self.hbTitle.set_subtitle(path)
+
             with open(path, "r") as file:
                 lines = file.readlines()
 

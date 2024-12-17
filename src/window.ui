@@ -10,26 +10,29 @@
         <property name="orientation">horizontal</property>
         <property name="hexpand">true</property>
 
-        <!-- New Code -->
         <child>
           <object class="AdwToastOverlay" id="toast_overlay">
         <child>
           <object class="AdwNavigationView" id="navigation_view">
+
+          <!-- Main page -->
           <child>
-            <object class="AdwNavigationPage">
-              <property name="title" translatable="true">Create Shortcut</property>
+            <object class="AdwNavigationPage" id="nav_page_main">
+              <property name="title">Create Shortcut</property>
               <property name="tag">main_page</property>
               <property name="child">
                 <object class="GtkBox" id="mainBox">
               <property name="orientation">vertical</property>
+
               <!-- Header Bar Stuff -->
                 <child>
                   <object class="AdwHeaderBar" id="header_bar">
                     <property name="title-widget">
                       <object class="AdwWindowTitle" id="hbTitle">
-                          <property name="title">Create Shortcut</property>
-                    </object>
+                        <property name="title">Create Shortcut</property>
+                      </object>
                     </property>
+
                     <child type="start">
                       <object class="GtkButton" id="btnCreate">
                         <property name="label" translatable="yes">_Create</property>
@@ -41,6 +44,7 @@
                         </style>
                       </object>
                     </child>
+
                     <child type="end">
                       <object class="GtkButton" id="btnCancel">
                         <property name="label" translatable="yes">Ca_ncel</property>
@@ -169,21 +173,18 @@
               </property>
             </object>
           </child>
+
+          <!-- Set Icon page -->
           <child>
             <object class="AdwNavigationPage">
+              <property name="title">Icon</property>
               <property name="tag">icon_page</property>
               <property name="child">
                 <object class="GtkBox" id="iconBox">
                 <property name="orientation">vertical</property>
                 <property name="hexpand">true</property>
             <child>
-              <object class="AdwHeaderBar">
-                <property name="title-widget">
-                  <object class="AdwWindowTitle">
-                    <property name="title">Icon</property>
-                  </object>
-                </property>
-              </object>
+              <object class="AdwHeaderBar" />
             </child>
             <child>
               <object class="GtkListBox">
@@ -258,8 +259,10 @@
             </object>
           </child>
 
+        <!-- Shortcut Created Page -->
         <child>
           <object class="AdwNavigationPage">
+            <property name="title">Shortcut Created!</property>
             <property name="tag">created_page</property>
             <property name="can_pop">false</property>
             <property name="child">
@@ -267,13 +270,7 @@
             <property name="orientation">vertical</property>
             <property name="hexpand">true</property>
             <child>
-              <object class="AdwHeaderBar">
-                <property name="title-widget">
-                  <object class="AdwWindowTitle">
-                    <property name="title" translatable="yes">Shortcut Created!</property>
-                  </object>
-                </property>
-              </object>
+              <object class="AdwHeaderBar" />
             </child>
             <child>
               <object class="GtkLabel">
@@ -386,5 +383,6 @@
 
 
 </interface>
+
 
 
